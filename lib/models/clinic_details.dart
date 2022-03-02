@@ -1,5 +1,5 @@
-class PatientDetails {
-  PatientDetails({
+class ClinicDetails {
+  ClinicDetails({
     required this.id,
     required this.clinicName,
     required this.clinicRegistrationId,
@@ -17,7 +17,6 @@ class PatientDetails {
       city,
       state;
 }
-
 
 
 // "id": 1,

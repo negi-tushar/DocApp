@@ -3,6 +3,8 @@ import 'package:docapp/Auth/auth_form.dart';
 import 'package:docapp/Screens/doc_details.dart';
 import 'package:docapp/Screens/homescreen.dart';
 import 'package:docapp/Screens/registered_users.dart';
+import 'package:docapp/Widgets/custom_search.dart';
+import 'package:docapp/provider/clinic_provider.dart';
 import 'package:docapp/provider/patient_data_provider.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
@@ -39,7 +41,8 @@ class _MyAppState extends State<MyApp> with SingleTickerProviderStateMixin {
   Widget build(BuildContext context) {
     return MultiProvider(
         providers: [
-          ChangeNotifierProvider(create: (context) => PatientsData())
+          ChangeNotifierProvider(create: (context) => PatientsData()),
+          ChangeNotifierProvider(create: (context) => ClinicData()),
         ],
         child: MaterialApp(
           title: 'DocApp',
@@ -56,7 +59,7 @@ class _MyAppState extends State<MyApp> with SingleTickerProviderStateMixin {
               ),
             ),
           ),
-          // home: const HomeScreen(),
+          //home: const customSearch(),
           home: AuthHomePage(
             controller: _controller,
           ),
