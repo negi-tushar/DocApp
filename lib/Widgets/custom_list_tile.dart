@@ -1,7 +1,7 @@
 import 'dart:convert';
 
 import 'package:docapp/Screens/doc_details.dart';
-import 'package:docapp/models/doctors_details.dart' as doc;
+import 'package:docapp/models/clinic_details.dart';
 import 'package:flutter/material.dart';
 
 class CustomListTile extends StatelessWidget {
@@ -13,7 +13,7 @@ class CustomListTile extends StatelessWidget {
   }) : super(key: key);
   final String location;
   final int index;
-  final doc.DoctorDetails details;
+  final ClinicDetails details;
 
   @override
   Widget build(BuildContext context) {
@@ -44,21 +44,21 @@ class CustomListTile extends StatelessWidget {
                           Color.fromRGBO(255, 207, 199, 1),
                           Color.fromRGBO(246, 147, 131, 1),
                         ])),
-          child: details.doc_id.isNotEmpty
+          child: details.clinicName.isNotEmpty
               ? const CircleAvatar(
                   child: Icon(Icons.person),
                 )
               : const Icon(Icons.person),
         ),
         title: Text(
-          details.doc_name,
+          details.clinicName,
           style: const TextStyle(color: Colors.white),
         ),
         subtitle: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
             Text(
-              '${details.doc_specialization} - $location',
+              ' ${details.street} ${details.state}',
               style: const TextStyle(color: Colors.white, fontSize: 11),
             ),
             const Text(
@@ -69,7 +69,7 @@ class CustomListTile extends StatelessWidget {
               mainAxisAlignment: MainAxisAlignment.spaceBetween,
               children: [
                 Text(
-                  details.doc_fees.toString(),
+                  details.clinicRegistrationId.toString(),
                   style: const TextStyle(color: Colors.white, fontSize: 14),
                 ),
                 ElevatedButton(

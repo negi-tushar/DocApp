@@ -5,7 +5,7 @@ class ClinicDetails {
     required this.clinicRegistrationId,
     required this.phoneNo,
     required this.street,
-    required this.city,
+    required this.area,
     required this.state,
   });
 
@@ -14,7 +14,7 @@ class ClinicDetails {
       clinicRegistrationId,
       phoneNo,
       street,
-      city,
+      area,
       state;
 }
 

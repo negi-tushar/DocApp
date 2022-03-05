@@ -60,7 +60,7 @@ class _HomeScreenState extends State<HomeScreen> {
     // print(details.first.email);
     return Scaffold(
       backgroundColor: const Color.fromRGBO(43, 51, 61, 1),
-      // drawer: MyDrawer(data: details),
+      drawer: MyDrawer(data: details),
       body: details.isEmpty
           ? const Center(
               child: CircularProgressIndicator(),
@@ -195,11 +195,11 @@ class _HomeScreenState extends State<HomeScreen> {
                       const SizedBox(
                         height: 8,
                       ),
-                      // const Text(
-                      //   'Top Doctor',
-                      //   style: TextStyle(fontSize: 30),
-                      // ),
-                      //  const TopDoctors(),
+                      const Text(
+                        'Top Clinics',
+                        style: TextStyle(fontSize: 30),
+                      ),
+                      const TopDoctors(),
                     ],
                   ),
                 ),

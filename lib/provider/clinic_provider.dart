@@ -11,8 +11,7 @@ class ClinicData implements ChangeNotifier {
     return [..._clinicdetails];
   }
 
-  Future<List<ClinicDetails>> getClinicDetails(String query) async {
-    print('started $query');
+  Future<List<ClinicDetails>> getAllClinicDetails() async {
     var req = await http.get(Uri.parse('http://$IpAdress:8001/clinics'));
     final List data = json.decode(req.body);
     // print(data);
@@ -25,17 +24,23 @@ class ClinicData implements ChangeNotifier {
         clinicRegistrationId: element['clinicRegistrationId'],
         phoneNo: element['phoneNo'],
         street: element['street'],
-        city: element['city'],
+        area: element['area'],
         state: element['state'],
       ));
     });
     _clinicdetails = d;
-    d = d
+    return _clinicdetails;
+  }
+
+  Future<List<ClinicDetails>> getClinicDetails(String query) async {
+    print('started $query');
+    List<ClinicDetails> d = [];
+
+    d = _clinicdetails
         .where((element) =>
             element.clinicName.toLowerCase().contains(query.toLowerCase()))
         .toList();
     print(d.first.clinicName);
-
     return d;
   }
 
