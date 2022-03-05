@@ -1,5 +1,6 @@
 import 'dart:convert';
 
+import 'package:docapp/global.dart';
 import 'package:docapp/models/clinic_details.dart';
 import 'package:flutter/material.dart';
 import 'package:http/http.dart' as http;
@@ -12,7 +13,7 @@ class ClinicData implements ChangeNotifier {
 
   Future<List<ClinicDetails>> getClinicDetails(String query) async {
     print('started $query');
-    var req = await http.get(Uri.parse('http://192.168.1.8:8001/clinics'));
+    var req = await http.get(Uri.parse('http://$IpAdress:8001/clinics'));
     final List data = json.decode(req.body);
     // print(data);
     //  if (req.statusCode == 200) {

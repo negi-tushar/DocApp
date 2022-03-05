@@ -1,7 +1,7 @@
 import 'dart:convert';
 
 import 'package:docapp/Screens/doc_details.dart';
-import 'package:docapp/models/patient_details.dart';
+import 'package:docapp/models/doctors_details.dart' as doc;
 import 'package:flutter/material.dart';
 
 class CustomListTile extends StatelessWidget {
@@ -13,7 +13,7 @@ class CustomListTile extends StatelessWidget {
   }) : super(key: key);
   final String location;
   final int index;
-  final PatientDetails details;
+  final doc.DoctorDetails details;
 
   @override
   Widget build(BuildContext context) {
@@ -23,7 +23,7 @@ class CustomListTile extends StatelessWidget {
       }),
       child: ListTile(
         minVerticalPadding: 15,
-        isThreeLine: true,
+        //  isThreeLine: true,
         leading: Container(
           width: 50,
           height: 50,
@@ -44,23 +44,21 @@ class CustomListTile extends StatelessWidget {
                           Color.fromRGBO(255, 207, 199, 1),
                           Color.fromRGBO(246, 147, 131, 1),
                         ])),
-          child: details.image.isNotEmpty
-              ? CircleAvatar(
-                  backgroundImage: MemoryImage(
-                    base64Decode(details.image),
-                  ),
+          child: details.doc_id.isNotEmpty
+              ? const CircleAvatar(
+                  child: Icon(Icons.person),
                 )
               : const Icon(Icons.person),
         ),
         title: Text(
-          details.fname,
+          details.doc_name,
           style: const TextStyle(color: Colors.white),
         ),
         subtitle: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
             Text(
-              'Heart Surgon- $location',
+              '${details.doc_specialization} - $location',
               style: const TextStyle(color: Colors.white, fontSize: 11),
             ),
             const Text(
@@ -70,9 +68,9 @@ class CustomListTile extends StatelessWidget {
             Row(
               mainAxisAlignment: MainAxisAlignment.spaceBetween,
               children: [
-                const Text(
-                  '₹ 500',
-                  style: TextStyle(color: Colors.white, fontSize: 14),
+                Text(
+                  details.doc_fees.toString(),
+                  style: const TextStyle(color: Colors.white, fontSize: 14),
                 ),
                 ElevatedButton(
                   style: ElevatedButton.styleFrom(

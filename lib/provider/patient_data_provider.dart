@@ -1,6 +1,6 @@
 import 'dart:convert';
-import 'dart:math';
 
+import 'package:docapp/global.dart';
 import 'package:docapp/models/patient_details.dart';
 import 'package:flutter/material.dart';
 import 'package:http/http.dart' as http;
@@ -14,7 +14,7 @@ class PatientsData implements ChangeNotifier {
   Future<List<PatientDetails>> getpatientsData() async {
     try {
       // print('started');
-      var req = await http.get(Uri.parse('http://192.168.1.8:8000/patients'));
+      var req = await http.get(Uri.parse('http://$IpAdress:8000/patients'));
       //   print('Status Code${req.body}');
       var fetchedData = (await json.decode(req.body) as List)
           .map((e) => e as Map<String, dynamic>);
@@ -45,7 +45,7 @@ class PatientsData implements ChangeNotifier {
 
   Future<List<PatientDetails>> getDetailsbyId(String id) async {
     print(id);
-    var req = await http.get(Uri.parse('http://192.168.1.8:8000/patient/$id'));
+    var req = await http.get(Uri.parse('http://$IpAdress:8000/patient/$id'));
 
     var j = json.decode(req.body) as Map<String, dynamic>;
     List<PatientDetails> d = [];

@@ -1,3 +1,4 @@
+import 'package:docapp/Screens/clinic_details.dart';
 import 'package:docapp/models/clinic_details.dart';
 import 'package:docapp/provider/clinic_provider.dart';
 import 'package:flutter/material.dart';
@@ -42,7 +43,9 @@ class customSearch extends StatelessWidget {
         onSuggestionSelected: (ClinicDetails? suggestion) {
           final details = suggestion!;
           ScaffoldMessenger.of(context)
-              .showSnackBar(SnackBar(content: Text(details.clinicName)));
+              .showSnackBar(SnackBar(content: Text(details.id)));
+          Navigator.of(context)
+              .pushNamed(ClinicDetailsScreen.id, arguments: details);
         },
         hideOnLoading: true,
         errorBuilder: (context, error) {

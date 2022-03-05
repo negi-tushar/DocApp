@@ -1,5 +1,7 @@
 import 'package:docapp/Widgets/custom_list_tile.dart';
+import 'package:docapp/models/doctors_details.dart';
 import 'package:docapp/models/patient_details.dart';
+import 'package:docapp/provider/doctors_data_provider.dart';
 import 'package:docapp/provider/patient_data_provider.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
@@ -11,8 +13,8 @@ class TopDoctors extends StatelessWidget {
   Widget build(BuildContext context) {
     return FutureBuilder(
         future:
-            Provider.of<PatientsData>(context, listen: false).getpatientsData(),
-        builder: (context, AsyncSnapshot<List<PatientDetails>> snap) {
+            Provider.of<DoctorsData>(context, listen: false).getDoctorsData(),
+        builder: (context, AsyncSnapshot<List<DoctorDetails>> snap) {
           if (snap.connectionState == ConnectionState.waiting) {
             return const Center(
               child: CircularProgressIndicator(),
@@ -24,6 +26,7 @@ class TopDoctors extends StatelessWidget {
               itemCount: snap.data!.length,
               itemBuilder: ((context, index) {
                 var data = snap.data![index];
+                print(data.doc_name);
                 return Container(
                   decoration: BoxDecoration(
                     color: const Color.fromRGBO(86, 101, 115, 130),
