@@ -42,8 +42,8 @@ class customSearch extends StatelessWidget {
         },
         onSuggestionSelected: (ClinicDetails? suggestion) {
           final details = suggestion!;
-          ScaffoldMessenger.of(context)
-              .showSnackBar(SnackBar(content: Text(details.id)));
+          // ScaffoldMessenger.of(context)
+          //     .showSnackBar(SnackBar(content: Text(details.id)));
           Navigator.of(context)
               .pushNamed(ClinicDetailsScreen.id, arguments: details);
         },
